@@ -9,7 +9,13 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('<App />', () => {
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
+    const wrapper = shallow(<App />);
+    expect(wrapper).toHaveLength(1);
   });
+
+  it('should have 2 children siblings', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('div').children()).toHaveLength(2);
+
+  })
 });
